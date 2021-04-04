@@ -1,0 +1,15 @@
+{
+  "name": "kitchenflow-monorepo",
+  "private":"true",
+  "version": "1.0.0",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": []
+  },
+  "dependencies": {
+    "react-native": "*"
+  },
+  "license": "MIT"
+}
