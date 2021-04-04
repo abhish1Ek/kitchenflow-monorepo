@@ -97,4 +97,9 @@ module.exports = {
       __DEV__: JSON.stringify(true),
     }),
   ],
+  devServer: {
+    compress: true,
+    port: 3001,
+    open: true,
+  },
 };
