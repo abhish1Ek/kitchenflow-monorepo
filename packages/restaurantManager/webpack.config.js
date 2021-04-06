@@ -9,8 +9,9 @@ function getDirectories(path) {
   });
 }
 
-const appDirectory = path.resolve(__dirname, '../../');
-const packages = getDirectories(path.resolve(appDirectory, './packages'));
+const workspacePath = path.resolve(__dirname, '../../');
+
+const packages = getDirectories(path.resolve(workspacePath, './packages'));
 
 const currentDirectory = path.resolve(__dirname);
 const {presets} = require(`${currentDirectory}/babel.config.js`);
@@ -20,11 +21,13 @@ const omitPackages = [];
 const compileNodeModules = [
   // Add every react-native package that needs compiling
   // 'react-native-gesture-handler',
-].map(moduleName => path.resolve(appDirectory, `./node_modules/${moduleName}`));
+].map(moduleName =>
+  path.resolve(workspacePath, `./node_modules/${moduleName}`),
+);
 
 const packagesToWatch = packages
   .filter(package => !omitPackages.includes(package))
-  .map(package => path.resolve(appDirectory, `./packages/${package}`));
+  .map(package => path.resolve(workspacePath, `./packages/${package}`));
 
 const babelLoaderConfiguration = {
   test: /\.js$|tsx?$/,
