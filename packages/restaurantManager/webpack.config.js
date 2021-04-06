@@ -1,108 +1,47 @@
-const path = require('path');
-const fs = require('fs');
-const webpack = require('webpack');
+const {merge} = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const commonConfig = require('../../buildUtils/webpack.common.js');
+const createBabelLoaderConfig = require('../../buildUtils/createBabelLoaderConfig');
 
-function getDirectories(path) {
-  return fs.readdirSync(path).filter(function (file) {
-    return fs.statSync(path + '/' + file).isDirectory();
-  });
-}
+const babelLoaderConfiguration = createBabelLoaderConfig({
+  omitPackages: [],
 
-const workspacePath = path.resolve(__dirname, '../../');
-
-const packages = getDirectories(path.resolve(workspacePath, './packages'));
-
-const currentDirectory = path.resolve(__dirname);
-const {presets} = require(`${currentDirectory}/babel.config.js`);
-
-const omitPackages = [];
-
-const compileNodeModules = [
-  // Add every react-native package that needs compiling
-  // 'react-native-gesture-handler',
-].map(moduleName =>
-  path.resolve(workspacePath, `./node_modules/${moduleName}`),
-);
-
-const packagesToWatch = packages
-  .filter(package => !omitPackages.includes(package))
-  .map(package => path.resolve(workspacePath, `./packages/${package}`));
-
-const babelLoaderConfiguration = {
-  test: /\.js$|tsx?$/,
   // Add every directory that needs to be compiled by Babel during the build.
   include: [
     path.resolve(__dirname, 'index.web.js'), // Entry to your application
     path.resolve(__dirname, 'App.web.tsx'), // Change this to your main App file
     path.resolve(__dirname, 'src'),
-    ...compileNodeModules,
-    ...packagesToWatch,
   ],
-  use: {
-    loader: 'babel-loader',
-    options: {
-      cacheDirectory: true,
-      presets,
-      plugins: ['react-native-web'],
-    },
-  },
-};
-
-const svgLoaderConfiguration = {
-  test: /\.svg$/,
-  use: [
-    {
-      loader: '@svgr/webpack',
-    },
+  compileNodeModules: [
+    // Add every react-native package that needs compiling
+    // 'react-native-gesture-handler',
   ],
-};
+});
 
-const imageLoaderConfiguration = {
-  test: /\.(gif|jpe?g|png)$/,
-  use: {
-    loader: 'url-loader',
-    options: {
-      name: '[name].[ext]',
-    },
-  },
-};
-
-module.exports = {
+const config = {
   entry: {
     app: path.join(__dirname, 'index.web.js'),
   },
   output: {
-    path: path.resolve(currentDirectory, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: 'rnw_kitchenflow_restaurantManager.bundle.js',
   },
-  resolve: {
-    extensions: ['.web.tsx', '.web.ts', '.tsx', '.ts', '.web.js', '.js'],
-    alias: {
-      'react-native$': 'react-native-web',
-    },
-  },
+
   module: {
-    rules: [
-      babelLoaderConfiguration,
-      imageLoaderConfiguration,
-      svgLoaderConfiguration,
-    ],
+    rules: [babelLoaderConfiguration],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'index.html'),
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      // See: https://github.com/necolas/react-native-web/issues/349
-      __DEV__: JSON.stringify(true),
-    }),
   ],
   devServer: {
-    compress: true,
     port: 3001,
-    open: true,
   },
+};
+
+module.exports = ({env}) => {
+  return merge(commonConfig, config);
 };

@@ -6,7 +6,9 @@ const Main = () => {
   const [count, setCount] = useState(0);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Hello from {'\n'}React Native Web!</Text>
+      <Text style={styles.title}>
+        Hel ssslo from {'\n'}React ss Native Web!
+      </Text>
       <TouchableOpacity
         onPress={() => setCount(count + 1)}
         style={styles.button}>
