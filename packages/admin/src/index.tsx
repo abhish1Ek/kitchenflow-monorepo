@@ -1,6 +1,6 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import Test from "native/components/Test";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import Test from 'native/components/Test';
 
 class App extends React.Component {
   render(): JSX.Element {
@@ -13,4 +13,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("app-root"));
+ReactDOM.render(<App />, document.getElementById('app-root'));

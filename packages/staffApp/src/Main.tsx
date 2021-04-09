@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Test from 'native/components/Test';
 
 const Main = () => {
@@ -11,7 +11,8 @@ const Main = () => {
       </Text>
       <TouchableOpacity
         onPress={() => setCount(count + 1)}
-        style={styles.button}>
+        style={styles.button}
+      >
         <Text>Click me!</Text>
       </TouchableOpacity>
 
