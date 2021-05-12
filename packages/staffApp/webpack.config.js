@@ -1,4 +1,4 @@
-const {merge} = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const commonConfig = require('../../buildUtils/webpack.common.js');
@@ -42,6 +42,6 @@ const config = {
   },
 };
 
-module.exports = ({env}) => {
+module.exports = ({ env }) => {
   return merge(commonConfig, config);
 };
