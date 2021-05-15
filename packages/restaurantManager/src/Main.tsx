@@ -9,6 +9,7 @@ const Main = () => {
       <Text style={styles.title}>
         Hel ssslo from {'\n'}React ss Native Web!
       </Text>
+
       <TouchableOpacity
         onPress={() => setCount(count + 1)}
         style={styles.button}

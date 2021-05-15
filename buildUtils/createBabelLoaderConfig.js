@@ -33,6 +33,7 @@ module.exports = ({
     test: /\.js$|tsx?$/,
     // Add every directory that needs to be compiled by Babel during the build.
     include: [...include, ...compileNodeModulesList, ...packagesToWatch],
+    exclude: [/\.(native|ios|android).js$/, /\.(native|ios|android).ts$/],
     use: {
       loader: 'babel-loader',
       options: {
