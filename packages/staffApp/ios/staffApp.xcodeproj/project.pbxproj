@@ -12,9 +12,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		4282E268603E6E3DF9FCC8A4 /* libPods-staffApp-staffAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EAD2AEB6D76B8759703A4F6 /* libPods-staffApp-staffAppTests.a */; };
+		55D7C618D5BD482494491162 /* Poppins.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E9DCF80FA774A8C80D0B473 /* Poppins.otf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		D74CA7B45A1E0DB3EB401A07 /* libPods-staffApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E13035ACC224F6005C021585 /* libPods-staffApp.a */; };
-		55D7C618D5BD482494491162 /* Poppins.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E9DCF80FA774A8C80D0B473 /* Poppins.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,13 +39,13 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = staffApp/main.m; sourceTree = "<group>"; };
 		2EAD2AEB6D76B8759703A4F6 /* libPods-staffApp-staffAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-staffApp-staffAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C4868DE33EEA98B937A3D2 /* Pods-staffApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-staffApp.debug.xcconfig"; path = "Target Support Files/Pods-staffApp/Pods-staffApp.debug.xcconfig"; sourceTree = "<group>"; };
+		4E9DCF80FA774A8C80D0B473 /* Poppins.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Poppins.otf; path = ../../common/assets/fonts/Poppins.otf; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = staffApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2245AA26D0156794AD65A60 /* Pods-staffApp-staffAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-staffApp-staffAppTests.debug.xcconfig"; path = "Target Support Files/Pods-staffApp-staffAppTests/Pods-staffApp-staffAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF1D519E9FB5191F7C31FD72 /* Pods-staffApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-staffApp.release.xcconfig"; path = "Target Support Files/Pods-staffApp/Pods-staffApp.release.xcconfig"; sourceTree = "<group>"; };
 		E13035ACC224F6005C021585 /* libPods-staffApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-staffApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F5BB952DFA47C9520EEB2394 /* Pods-staffApp-staffAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-staffApp-staffAppTests.release.xcconfig"; path = "Target Support Files/Pods-staffApp-staffAppTests/Pods-staffApp-staffAppTests.release.xcconfig"; sourceTree = "<group>"; };
-		4E9DCF80FA774A8C80D0B473 /* Poppins.otf */ = {isa = PBXFileReference; name = "Poppins.otf"; path = "../../common/assets/fonts/Poppins.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +83,15 @@
 				00E356F11AD99517003FC87E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0C117A14F900410A8729EC89 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4E9DCF80FA774A8C80D0B473 /* Poppins.otf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		13B07FAE1A68108700A75B9A /* staffApp */ = {
@@ -150,15 +159,6 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
-		};
-		0C117A14F900410A8729EC89 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				4E9DCF80FA774A8C80D0B473 /* Poppins.otf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 

@@ -1,44 +1,22 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Test from 'native/components/Test';
+import * as React from 'react';
+import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
+import Page from './containers/Page';
 
-const Main = () => {
-  const [count, setCount] = useState(0);
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>
-        Hel ssslo from {'\n'}React ss Native Web!
-      </Text>
+const theme = {
+  ...DefaultTheme,
 
-      <TouchableOpacity
-        onPress={() => setCount(count + 1)}
-        style={styles.button}
-      >
-        <Text>Click me!</Text>
-      </TouchableOpacity>
-
-      <Text>You clicked {count} times!</Text>
-      <Test />
-    </View>
-  );
+  colors: {
+    ...DefaultTheme.colors,
+    text: '#0000',
+    accent: '##2D2D2D',
+  },
+  dark: false,
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#C3E8BD',
-    paddingTop: 40,
-    paddingHorizontal: 10,
-  },
-  button: {
-    backgroundColor: '#ADBDFF',
-    padding: 5,
-    marginVertical: 20,
-    alignSelf: 'flex-start',
-  },
-  title: {
-    fontSize: 40,
-  },
-});
-
-export default Main;
+export default function Main() {
+  return (
+    // <PaperProvider>
+    <Page />
+    // </PaperProvider>
+  );
+}
