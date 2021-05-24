@@ -1,8 +1,19 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 
 const ScreenContainer: React.FC = props => {
-  return <View style={styles.container}>{props.children}</View>;
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={styles.container}>{props.children}</View>
+    </TouchableWithoutFeedback>
+  );
 };
 
 const styles = StyleSheet.create({

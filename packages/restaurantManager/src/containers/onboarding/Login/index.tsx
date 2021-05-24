@@ -1,41 +1,67 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { Subheading, TextInput, Title, Paragraph } from 'react-native-paper';
-import InputText from 'native/components/InputText';
-import SubmitButton from 'native/components/SubmitButton';
-import ScreenContainer from 'native/layouts/ScreenContainer';
-import Box from './Box';
+import { KeyboardAvoidingView, Text } from 'react-native';
+import { TextInput } from 'react-native-paper';
+import TextInputField from 'native/fields/TextInput';
+import Box from '../components/Box';
 import Bullet from './Bullet';
+import * as Yup from 'yup';
+import FormSubmitButton from 'native/fields/FormSubmitButton';
+import Form from 'native/components/Form';
+import OnboardingScreen from '../components/OnboardingScreen';
+import useKeyboard from 'native/hooks';
+
+const validationSchema = Yup.object({
+  email: Yup.string().email().required(),
+}).required();
+
+type LoginValues = Yup.TypeOf<typeof validationSchema>;
+
+const initialValues: LoginValues = {
+  email: '',
+};
 
 const MyComponent = (): JSX.Element => {
+  const [isVisible] = useKeyboard();
   return (
-    <ScreenContainer>
-      <Box flex={4} style={{ width: '80%' }}>
-        <Title style={{ fontSize: 24 }}>Let's start</Title>
-        <Subheading>to manage your services</Subheading>
-        <Paragraph>
-          enter your registered mail id assoiciated with kitchen flow
-        </Paragraph>
-      </Box>
-      <Box flex={1}>
-        <InputText
-          label="Email"
-          left={<TextInput.Icon name="email-outline" size={25} />}
-        />
-      </Box>
-      <Box flex={2}>
-        <SubmitButton onPress={() => {}}>Continue</SubmitButton>
-      </Box>
-      <Box flex={4}>
-        <Text style={{ marginBottom: 10 }}>Instructions</Text>
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior="height">
+      <OnboardingScreen
+        title="Let's start"
+        subTitle="to manage your services"
+        description="enter your registered mail id assoiciated with kitchen flow"
+      >
+        <Form
+          validationSchema={validationSchema}
+          initialValues={initialValues}
+          onSubmit={value => {
+            console.log(value);
+          }}
+        >
+          <Box flex={3} justify="space-evenly">
+            <TextInputField
+              name="email"
+              label="Email"
+              type="email"
+              left={<TextInput.Icon name="email-outline" size={25} />}
+            />
 
-        {Array(5)
-          .fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed')
-          .map((s, index) => (
-            <Bullet key={index}>{s}</Bullet>
-          ))}
-      </Box>
-    </ScreenContainer>
+            <FormSubmitButton>continue</FormSubmitButton>
+          </Box>
+        </Form>
+
+        {!isVisible && (
+          <Box flex={4}>
+            <Text style={{ marginBottom: 10 }}>Instructions</Text>
+            {Array(5)
+              .fill(
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed',
+              )
+              .map((s, index) => (
+                <Bullet key={index}>{s}</Bullet>
+              ))}
+          </Box>
+        )}
+      </OnboardingScreen>
+    </KeyboardAvoidingView>
   );
 };
 
