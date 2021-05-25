@@ -1,5 +1,5 @@
 import React from 'react';
-import { KeyboardAvoidingView, Text } from 'react-native';
+import { KeyboardAvoidingView, Platform, Text } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import TextInputField from 'native/fields/TextInput';
 import Box from '../components/Box';
@@ -23,7 +23,10 @@ const initialValues: LoginValues = {
 const MyComponent = (): JSX.Element => {
   const [isVisible] = useKeyboard();
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior="height">
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
       <OnboardingScreen
         title="Let's start"
         subTitle="to manage your services"

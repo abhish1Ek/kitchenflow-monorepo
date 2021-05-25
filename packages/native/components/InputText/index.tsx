@@ -11,10 +11,11 @@ type ITextInputPaper = React.ComponentProps<typeof TextInputPaper>;
 export type ITextInput = Omit<ITextInputPaper, 'error'> & {
   errorMessage?: string;
   type?: InputType;
+  helperText?: string;
 };
 
 const InputText = React.forwardRef<TextInput, ITextInput>((props, ref) => {
-  const { errorMessage, type, ...inputProps } = props;
+  const { errorMessage, type, helperText, ...inputProps } = props;
 
   const inputTypeProps = useMemo(() => getInputTypeProp(type), [type]);
 
@@ -30,10 +31,16 @@ const InputText = React.forwardRef<TextInput, ITextInput>((props, ref) => {
           paddingBottom: 0,
           // paddingHorizontal: 0,
         }}
+        error={!!errorMessage}
       />
       {!!errorMessage && (
-        <HelperText style={{ paddingHorizontal: 0 }} type="info">
+        <HelperText style={{ paddingHorizontal: 0 }} type="error">
           {errorMessage}
+        </HelperText>
+      )}
+      {!errorMessage && helperText && (
+        <HelperText style={{ paddingHorizontal: 0 }} type="info">
+          {helperText}
         </HelperText>
       )}
     </View>

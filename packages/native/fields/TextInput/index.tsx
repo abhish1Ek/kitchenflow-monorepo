@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { TextInput, Platform } from 'react-native';
 import InputText, { ITextInput } from '../../components/InputText';
 import { IFieldProps } from '../types';
@@ -22,7 +22,10 @@ const Input = React.forwardRef<TextInput, ITextInputFieldProps>(
       <>
         <InputText
           ref={ref}
-          onChangeText={onChangeValue}
+          onChangeText={val => {
+            console.log(val);
+            onChangeValue(val);
+          }}
           value={props.value}
           errorMessage={errorMessage}
           {...inputProps}
@@ -34,4 +37,4 @@ const Input = React.forwardRef<TextInput, ITextInputFieldProps>(
 
 const TextInputField = injectFieldHandlerHoc(Input);
 
-export default TextInputField;
+export default memo(TextInputField);

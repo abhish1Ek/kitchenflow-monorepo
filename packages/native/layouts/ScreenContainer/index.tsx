@@ -6,11 +6,21 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
+  Platform,
 } from 'react-native';
+
+const isWeb = Platform.OS === 'web';
 
 const ScreenContainer: React.FC = props => {
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        if (!isWeb) {
+          Keyboard?.dismiss?.();
+        }
+      }}
+      accessible={isWeb}
+    >
       <View style={styles.container}>{props.children}</View>
     </TouchableWithoutFeedback>
   );
