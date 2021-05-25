@@ -9,6 +9,7 @@ import FormSubmitButton from 'native/fields/FormSubmitButton';
 import Form from 'native/components/Form';
 import OnboardingScreen from '../components/OnboardingScreen';
 import useKeyboard from 'native/hooks';
+import { getFieldKeys } from 'common/utility/form';
 
 const validationSchema = Yup.object({
   email: Yup.string().email().required(),
@@ -19,6 +20,8 @@ type LoginValues = Yup.TypeOf<typeof validationSchema>;
 const initialValues: LoginValues = {
   email: '',
 };
+
+const formKeys = getFieldKeys(initialValues);
 
 const MyComponent = (): JSX.Element => {
   const [isVisible] = useKeyboard();
@@ -41,7 +44,7 @@ const MyComponent = (): JSX.Element => {
         >
           <Box flex={3} justify="space-evenly">
             <TextInputField
-              name="email"
+              name={formKeys.email}
               label="Email"
               type="email"
               left={<TextInput.Icon name="email-outline" size={25} />}

@@ -9,32 +9,29 @@ import OnboardingScreen from '../components/OnboardingScreen';
 import { getFieldKeys } from 'common/utility/form';
 
 const validationSchema = Yup.object({
+  email: Yup.string().email().required(),
   password: Yup.string().required('Password is required'),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref('password'), null],
-    'Passwords must match',
-  ),
 }).required();
 
-type CreatePasswordValues = Yup.TypeOf<typeof validationSchema>;
+type LoginValues = Yup.TypeOf<typeof validationSchema>;
 
-const initialValues: CreatePasswordValues = {
+const initialValues: LoginValues = {
   password: '',
-  confirmPassword: '',
+  email: '',
 };
 
 const formKeys = getFieldKeys(initialValues);
 
-const CreatePassword = (): JSX.Element => {
+const Login = (): JSX.Element => {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <OnboardingScreen
-        title="Create Password"
-        subTitle="and we are good to go"
-        description="easily generate your pasword to make your login credentials safe"
+        title="Enter Account"
+        subTitle="to start working"
+        description="enter your registered mail id with the password shared by admin"
       >
         <Form
           validationSchema={validationSchema}
@@ -46,24 +43,20 @@ const CreatePassword = (): JSX.Element => {
           <Box flex={7} justify="flex-start">
             <View style={styles.field}>
               <TextInputField
-                style={styles.field}
-                name={formKeys.password}
-                label="Password"
-                type="password"
-                helperText="Password must be of 8 characters"
+                name={formKeys.email}
+                label="Email"
+                type="email"
               />
             </View>
             <View style={styles.field}>
               <TextInputField
-                style={styles.field}
-                name={formKeys.confirmPassword}
-                label="Re-enter Password"
+                name={formKeys.password}
+                label="Password"
                 type="password"
-                helperText="Both password must match"
               />
             </View>
             <View style={{ marginTop: 35 }}>
-              <FormSubmitButton style={styles.field}>continue</FormSubmitButton>
+              <FormSubmitButton style={styles.field}>Login</FormSubmitButton>
             </View>
           </Box>
         </Form>
@@ -78,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreatePassword;
+export default Login;

@@ -1,6 +1,8 @@
 import React from 'react';
-import { Subheading, Title, Paragraph } from 'react-native-paper';
+import Title from 'native/typography/Title';
+import Subtitle from 'native/typography/Subtitle';
 import Box from '../Box';
+import Body from 'native/typography/Body';
 
 export interface IHeadingBox {
   title: string;
@@ -11,9 +13,9 @@ export interface IHeadingBox {
 const HeadingBox: React.FC<IHeadingBox> = props => {
   return (
     <Box flex={3} style={{ width: '80%' }}>
-      <Title style={{ fontSize: 24 }}>{props.title}</Title>
-      <Subheading>{props.subTitle}</Subheading>
-      <Paragraph>{props.description}</Paragraph>
+      <Title>{props.title}</Title>
+      <Subtitle>{props.subTitle}</Subtitle>
+      <Body>{props.description}</Body>
     </Box>
   );
 };
