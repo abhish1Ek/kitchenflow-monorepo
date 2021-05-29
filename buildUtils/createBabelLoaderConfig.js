@@ -24,6 +24,8 @@ module.exports = ({
   const compileNodeModulesList = [
     // Add every react-native package that needs compiling
     'react-native-vector-icons',
+    'react-native-animatable',
+    'react-native-confirmation-code-field',
     ...compileNodeModules,
   ].map(moduleName =>
     path.resolve(workspacePath, `./node_modules/${moduleName}`),

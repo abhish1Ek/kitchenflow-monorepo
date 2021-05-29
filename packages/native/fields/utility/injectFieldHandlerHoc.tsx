@@ -34,7 +34,7 @@ export function injectFieldHandlerHoc<TProps>(
     return (
       <WrappedComponent
         {...((props as unknown) as TProps)}
-        onChangeValue={newValue => {
+        onChangeValue={(newValue: any) => {
           setFieldValue(name, newValue);
           props?.onChange?.(newValue);
         }}

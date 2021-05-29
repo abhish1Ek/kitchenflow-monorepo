@@ -51,5 +51,7 @@ module.exports = {
     compress: true,
 
     open: true,
+    historyApiFallback: true,
   },
+  devtool: 'inline-source-map',
 };

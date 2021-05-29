@@ -7,6 +7,8 @@ import FormSubmitButton from 'native/fields/FormSubmitButton';
 import Form from 'native/components/Form';
 import OnboardingScreen from '../components/OnboardingScreen';
 import { getFieldKeys } from 'common/utility/form';
+import { ROUTE_NAMES } from '../../../Routes/routes';
+import { useNavigation } from '@react-navigation/core';
 
 const validationSchema = Yup.object({
   password: Yup.string().required('Password is required'),
@@ -26,6 +28,7 @@ const initialValues: CreatePasswordValues = {
 const formKeys = getFieldKeys(initialValues);
 
 const CreatePassword = (): JSX.Element => {
+  const navigation = useNavigation();
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -40,7 +43,7 @@ const CreatePassword = (): JSX.Element => {
           validationSchema={validationSchema}
           initialValues={initialValues}
           onSubmit={value => {
-            console.log(value);
+            navigation.navigate(ROUTE_NAMES.Onboarding_Login);
           }}
         >
           <Box flex={7} justify="flex-start">
@@ -49,7 +52,7 @@ const CreatePassword = (): JSX.Element => {
                 style={styles.field}
                 name={formKeys.password}
                 label="Password"
-                type="password"
+                type="newPassword"
                 helperText="Password must be of 8 characters"
               />
             </View>
@@ -58,7 +61,7 @@ const CreatePassword = (): JSX.Element => {
                 style={styles.field}
                 name={formKeys.confirmPassword}
                 label="Re-enter Password"
-                type="password"
+                type="newPassword"
                 helperText="Both password must match"
               />
             </View>

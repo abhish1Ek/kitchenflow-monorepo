@@ -6,8 +6,12 @@ import Box from '../components/Box';
 import SubmitButton from 'native/components/SubmitButton';
 import Title from 'native/typography/Title';
 import Body from 'native/typography/Body';
+import { useNavigation } from '@react-navigation/core';
+import { ROUTE_NAMES } from '../../../Routes/routes';
 
 const Welcome: React.FC = () => {
+  const navigation = useNavigation();
+
   return (
     <ScreenContainer>
       <ImageBackground
@@ -24,7 +28,12 @@ const Welcome: React.FC = () => {
           manage a safe, accurate and efficient kitchen from anywhere
         </Body>
 
-        <SubmitButton style={styles.button} onPress={() => {}}>
+        <SubmitButton
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate(ROUTE_NAMES.Onboarding_Landing);
+          }}
+        >
           Let's Start
         </SubmitButton>
       </Box>

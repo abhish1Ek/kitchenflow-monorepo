@@ -4,7 +4,13 @@ import { HelperText } from 'react-native-paper';
 import { TextInput as TextInputPaper } from 'react-native-paper';
 import getInputTypeProp from './getInputTypeProps';
 
-export type InputType = 'email' | 'password' | 'digits' | 'name';
+export type InputType =
+  | 'email'
+  | 'password'
+  | 'digits'
+  | 'name'
+  | 'newPassword'
+  | 'phone';
 
 type ITextInputPaper = React.ComponentProps<typeof TextInputPaper>;
 

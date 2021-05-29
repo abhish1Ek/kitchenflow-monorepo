@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from './onboarding/Welcome';
+import Login from './onboarding/VerificationSuccess';
 
 const Main = () => {
   return <Login />;

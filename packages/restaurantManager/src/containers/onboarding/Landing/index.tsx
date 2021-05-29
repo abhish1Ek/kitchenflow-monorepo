@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform, Text } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import TextInputField from 'native/fields/TextInput';
@@ -10,6 +10,9 @@ import Form from 'native/components/Form';
 import OnboardingScreen from '../components/OnboardingScreen';
 import useKeyboard from 'native/hooks';
 import { getFieldKeys } from 'common/utility/form';
+import BottomHalfModal from './EnterOtp';
+import { useNavigation } from '@react-navigation/core';
+import { ROUTE_NAMES } from '../../../Routes/routes';
 
 const validationSchema = Yup.object({
   email: Yup.string().email().required(),
@@ -25,6 +28,11 @@ const formKeys = getFieldKeys(initialValues);
 
 const MyComponent = (): JSX.Element => {
   const [isVisible] = useKeyboard();
+
+  const [showModal, toggleModal] = useState(false);
+
+  const navigation = useNavigation();
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -40,6 +48,7 @@ const MyComponent = (): JSX.Element => {
           initialValues={initialValues}
           onSubmit={value => {
             console.log(value);
+            toggleModal(true);
           }}
         >
           <Box flex={3} justify="space-evenly">
@@ -67,6 +76,13 @@ const MyComponent = (): JSX.Element => {
           </Box>
         )}
       </OnboardingScreen>
+      <BottomHalfModal
+        open={showModal}
+        onClose={() => toggleModal(false)}
+        onSuccess={() => {
+          navigation.navigate(ROUTE_NAMES.Onboarding_EmailVaerified);
+        }}
+      />
     </KeyboardAvoidingView>
   );
 };
