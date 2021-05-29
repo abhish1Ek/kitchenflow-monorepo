@@ -11,7 +11,7 @@ import BottomHalfModal from 'native/components/Modals/BottomHalfModal';
 
 const validationSchema = Yup.object({
   otp: Yup.string()
-    .matches(/\d{4,7}/)
+    .matches(/\d{6,6}/)
     .required(),
 });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer, LinkingOptions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ROUTE_MAP } from './routes';
+import { ROUTE_MAP, ROUTE_NAMES } from './routes';
 
 import { RouteConfig } from './types';
 import { getScreenConfig } from './helpers';
@@ -24,7 +24,7 @@ const Routes: React.FC = () => {
       linking={linking}
       fallback={() => <Title>No Page</Title>}
     >
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName={ROUTE_NAMES.Onboarding_Welcome}>
         {Object.entries<RouteConfig>(ROUTE_MAP).map(([name, roouteConfig]) => (
           <Stack.Screen
             key={name}
