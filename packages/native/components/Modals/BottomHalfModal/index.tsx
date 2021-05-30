@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
 import Modal from 'react-native-modal';
 
 interface IBottomHalfModal {
@@ -19,7 +19,9 @@ const BottomHalfModal: React.FC<IBottomHalfModal> = props => {
       onBackdropPress={onClose}
       onBackButtonPress={onClose}
     >
-      <View style={styles.container}>{props.children}</View>
+      <KeyboardAvoidingView behavior="position" enabled>
+        <View style={styles.container}>{props.children}</View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };

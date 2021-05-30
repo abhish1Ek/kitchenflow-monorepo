@@ -18,12 +18,11 @@ const linking: LinkingOptions = {
   },
 };
 
+const Splash: React.FC = () => <Title>No Page</Title>;
+
 const Routes: React.FC = () => {
   return (
-    <NavigationContainer
-      linking={linking}
-      fallback={() => <Title>No Page</Title>}
-    >
+    <NavigationContainer linking={linking} fallback={<Splash />}>
       <Stack.Navigator initialRouteName={ROUTE_NAMES.Onboarding_Welcome}>
         {Object.entries<RouteConfig>(ROUTE_MAP).map(([name, roouteConfig]) => (
           <Stack.Screen
