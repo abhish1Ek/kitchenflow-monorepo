@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 import { TextInput } from 'react-native';
-import InputText, { ITextInput } from '../../components/InputText';
+import DateInput, { IDateInput } from '../../components/DateInput';
 import { IFieldProps } from '../types';
 import { injectFieldHandlerHoc } from '../utility/injectFieldHandlerHoc';
 
 type IFieldPropsKeys = keyof IFieldProps | 'onChangeText';
 
-type ITextInputFieldProps = IFieldProps & Omit<ITextInput, IFieldPropsKeys>;
+type ITextInputFieldProps = IFieldProps & Omit<IDateInput, IFieldPropsKeys>;
 
 const Input = React.forwardRef<TextInput, ITextInputFieldProps>(
   (props, ref) => {
@@ -14,7 +14,7 @@ const Input = React.forwardRef<TextInput, ITextInputFieldProps>(
 
     return (
       <>
-        <InputText
+        <DateInput
           ref={ref}
           onChangeText={val => {
             console.log(val);
