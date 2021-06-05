@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Title from 'native/typography/Title';
 import Subtitle from 'native/typography/Subtitle';
 import Box from '../Box';
@@ -8,11 +8,12 @@ export interface IHeadingBox {
   title: string;
   description: string;
   subTitle: string;
+  flex?: number;
 }
 
 const HeadingBox: React.FC<IHeadingBox> = props => {
   return (
-    <Box flex={3} style={{ width: '80%' }}>
+    <Box flex={props.flex} style={{ width: '80%' }}>
       <Title>{props.title}</Title>
       <Subtitle>{props.subTitle}</Subtitle>
       <Body>{props.description}</Body>
@@ -20,4 +21,8 @@ const HeadingBox: React.FC<IHeadingBox> = props => {
   );
 };
 
-export default HeadingBox;
+HeadingBox.defaultProps = {
+  flex: 3,
+};
+
+export default memo(HeadingBox, () => true);

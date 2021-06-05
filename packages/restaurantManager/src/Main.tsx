@@ -6,9 +6,10 @@ const theme: Theme = {
 
   colors: {
     ...DefaultTheme.colors,
-    text: '#0000',
+    text: 'black',
     accent: '#FF6D30',
     primary: '#2D2D2D',
+    onSurface: 'black',
   },
   // dark: false,
   mode: 'exact',

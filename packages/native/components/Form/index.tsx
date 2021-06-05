@@ -1,13 +1,11 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, FormikProps, FormikConfig } from 'formik';
 
-type FormikProps = React.ComponentProps<typeof Formik>;
+type TFormProps<T> = FormikConfig<T>;
 
-type TFormProps = FormikProps & {};
-
-const Form = (props: TFormProps): JSX.Element => {
+const Form = <T extends Object>(props: TFormProps<T>): JSX.Element => {
   const { children } = props;
-  return <Formik {...props}>{children}</Formik>;
+  return <Formik<T> {...props}>{children}</Formik>;
 };
 
 export default Form;

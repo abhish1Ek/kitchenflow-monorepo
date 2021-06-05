@@ -1,50 +1,52 @@
 import React from 'react';
 import Body from 'native/typography/Body';
 import { View } from 'react-native';
-import { RadioButton, useTheme } from 'react-native-paper';
+import { RadioButton } from 'react-native-paper';
 import * as _ from 'lodash';
-import Subtitle from 'native/typography/Subtitle';
+import InputLabel from 'native/typography/InputLabel';
+import FieldRow from '../FieldRow';
 
-type RadioObject = {
+export type RadioObject = {
   label: string;
   value: string;
 };
 
-interface IRadioInput {
+export interface IRadioInput {
   data: RadioObject[];
   onChange: (val: any) => void;
-  label: string;
+  label?: string;
   value: any;
+  columns?: number;
 }
 
 const RadioInput: React.FC<IRadioInput> = props => {
-  const { data, onChange, label, value } = props;
-  console.log(useTheme());
-  const onCheckboxPress = (val: any) => () => {
-    onChange(val);
-  };
+  const { data, onChange, label, value, columns } = props;
 
   return (
     <View>
-      <Subtitle>{label}</Subtitle>
+      {label && <InputLabel> {label}</InputLabel>}
+
       <RadioButton.Group onValueChange={value => onChange(value)} value={value}>
-        {_.chunk(data, 2).map(arr => (
-          <View style={{ flexDirection: 'row', flex: 2 }}>
-            {arr.map(radioObject => (
-              <View style={{ flex: 1 }}>
-                <RadioButton.Item
-                  label={radioObject.label}
-                  value={radioObject.value}
-                  style={{ flexDirection: 'row-reverse' }}
-                  labelStyle={{ color: '#B8B8B8' }}
-                />
-              </View>
-            ))}
-          </View>
-        ))}
+        <FieldRow columns={columns}>
+          {data.map(radioObject => (
+            <View key={radioObject.label}>
+              <RadioButton.Item
+                label={radioObject.label}
+                value={radioObject.value}
+                style={{ flexDirection: 'row-reverse', paddingHorizontal: 0 }}
+                labelStyle={{ color: '#B8B8B8' }}
+                mode="android"
+              />
+            </View>
+          ))}
+        </FieldRow>
       </RadioButton.Group>
     </View>
   );
+};
+
+RadioInput.defaultProps = {
+  columns: 2,
 };
 
 export default RadioInput;

@@ -5,6 +5,8 @@ import HeadingBox, { IHeadingBox } from '../HeadingBox';
 import commonCircle from 'common/assets/images/background/cornerCircle.png';
 import Box from '../Box';
 
+export const onboardingContainerStyle = { padding: 15 };
+
 interface IOnboardingScreen extends IHeadingBox {
   cornerCircle?: boolean;
 }
@@ -34,7 +36,7 @@ const OnboardingScreen: React.FC<IOnboardingScreen> = props => {
 };
 
 const styles = StyleSheet.create({
-  container: { padding: 15 },
+  container: { ...onboardingContainerStyle },
   bottomCornerCircle: {
     bottom: -5,
     left: 0,

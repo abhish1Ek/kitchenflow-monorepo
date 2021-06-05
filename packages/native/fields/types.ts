@@ -3,5 +3,5 @@ export interface IFieldProps {
   value: string | any;
   error?: string;
   name: string;
-  onBlur: () => void;
+  onBlur?: () => void;
 }

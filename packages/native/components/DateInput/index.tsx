@@ -7,7 +7,13 @@ import InputText, { ITextInput } from '../InputText';
 export interface IDateInput extends Omit<ITextInput, 'type'> {}
 
 const DateInput = React.forwardRef<TextInput, IDateInput>((props, ref) => {
-  const { value, onChangeText } = props;
+  const {
+    value,
+    onChangeText,
+    errorMessage,
+    helperText,
+    ...inputProps
+  } = props;
 
   const { masked, unmasked, obfuscated } = formatWithMask({
     text: value,
@@ -22,6 +28,9 @@ const DateInput = React.forwardRef<TextInput, IDateInput>((props, ref) => {
       onChangeText={onChangeText}
       left={<TextInputPaper.Icon name="calendar-blank-outline" size={25} />}
       placeholder="DD/MM/YYYY"
+      errorMessage={errorMessage}
+      helperText={helperText}
+      {...inputProps}
     />
   );
 });
