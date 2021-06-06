@@ -22,17 +22,13 @@ import RadioInput from 'native/fields/RadioInput';
 import FormSubmitButton from 'native/fields/FormSubmitButton';
 import FieldRow from 'native/components/FieldRow';
 import SelectInputField from 'native/fields/Select';
+import BottomActionBar from 'native/components/BottomActionBar';
+import YupValidations from 'common/utility/yupValidations';
 
 const validationSchema = Yup.object({
   firstName: Yup.string().defined(),
   lastName: Yup.string().defined(),
-  dob: Yup.string()
-    .trim()
-    .matches(
-      /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|(([1][26]|[2468][048]|[3579][26])00))))$/g,
-      'Not a valid date',
-    )
-    .defined(),
+  dob: YupValidations.date().defined(),
   gender: Yup.mixed<Gender>().oneOf(genderData.map(obj => obj.value)),
   teamRoleType: Yup.mixed<TeamRoleType>().oneOf(
     teamRoleData.map(obj => obj.value),
@@ -73,8 +69,12 @@ const Signup: React.FC = () => {
         {({ values }) => (
           <>
             <ScrollView
-              style={{ flex: 1 }}
-              contentContainerStyle={{ flex: 1, ...onboardingContainerStyle }}
+              // style={{ flex: 1 }}
+              contentContainerStyle={{
+                flexGrow: 1,
+                ...onboardingContainerStyle,
+                paddingBottom: 50,
+              }}
             >
               <HeadingBox
                 flex={2.5}
@@ -107,19 +107,24 @@ const Signup: React.FC = () => {
                       name={formKeys.teamRoleType}
                       label="Team Roles"
                     />
+
+                    <TextInput name={formKeys.lastName} label="Last Name" />
+
+                    {values.teamRoleType === 'BACK_OF_HOUSE' && (
+                      <SelectInputField
+                        label="Back of house"
+                        data={backOfHouseData}
+                        name={formKeys.backOfHouse}
+                        description="choose your prefered role"
+                      />
+                    )}
                   </FieldRow>
-                  {values.teamRoleType === 'BACK_OF_HOUSE' && (
-                    <SelectInputField
-                      label="Back of house"
-                      data={backOfHouseData}
-                      name={formKeys.backOfHouse}
-                      description="choose your prefered role"
-                    />
-                  )}
                 </View>
               </View>
-              <FormSubmitButton>Save & Continue</FormSubmitButton>
             </ScrollView>
+            <BottomActionBar>
+              <FormSubmitButton>Save & Continue</FormSubmitButton>
+            </BottomActionBar>
           </>
         )}
       </Form>

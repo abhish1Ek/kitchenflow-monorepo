@@ -4,6 +4,7 @@ import { useTheme } from 'react-native-paper';
 import SubmitButton, {
   TSubmitButtonProps,
 } from '../../components/SubmitButton';
+import BottomActionBar from 'native/components/BottomActionBar';
 
 interface IFormSubmitButton
   extends Pick<TSubmitButtonProps, 'loading' | 'disabled' | 'style'> {}
@@ -18,10 +19,7 @@ const FormSubmitButton: React.FC<IFormSubmitButton> = props => {
       loading={loading}
       disabled={disabled || loading}
       style={[
-        props.style,
-        !isValid
-          ? { backgroundColor: colors.disabled, elevation: 0 }
-          : undefined,
+        !isValid ? { backgroundColor: '#bbbbbb', elevation: 0 } : undefined,
       ]}
     >
       {props.children}

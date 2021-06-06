@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, FormikProps, FormikConfig } from 'formik';
+import { Formik, FormikConfig } from 'formik';
 
 type TFormProps<T> = FormikConfig<T>;
 
