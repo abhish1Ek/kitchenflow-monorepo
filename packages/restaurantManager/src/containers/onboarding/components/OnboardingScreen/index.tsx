@@ -4,8 +4,9 @@ import ScreenContainer from 'native/layouts/ScreenContainer';
 import HeadingBox, { IHeadingBox } from '../HeadingBox';
 import commonCircle from 'common/assets/images/background/cornerCircle.png';
 import Box from '../Box';
+import LayoutStyles from 'native/layouts/ScreenContainer/styles';
 
-export const onboardingContainerStyle = { padding: 15 };
+export const onboardingContainerStyle = { ...LayoutStyles.container };
 
 interface IOnboardingScreen extends IHeadingBox {
   cornerCircle?: boolean;
