@@ -5,7 +5,8 @@ import CreatePassword from '../containers/onboarding/CreatePassword';
 import { RouteConfig } from './types';
 import VerificationSuccess from '../containers/onboarding/VerificationSuccess';
 import Signup from '../containers/onboarding/Signup';
-import ManageProfile from '../containers/profile/manage';
+import ManageProfile from '../containers/profile/Manage';
+import EditProfile from '../containers/profile/Edit';
 
 const c = (obj: RouteConfig) => obj;
 
@@ -37,6 +38,10 @@ const ROUTE_MAP = Object.freeze({
   Profile_Manage: c({
     screen: ManageProfile,
     path: 'profile/manage',
+  }),
+  Profile_Edit: c({
+    screen: EditProfile,
+    path: 'profile/edit',
   }),
 });
 

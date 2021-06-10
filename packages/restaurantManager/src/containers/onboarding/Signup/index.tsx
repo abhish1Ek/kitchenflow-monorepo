@@ -92,8 +92,16 @@ const Signup: React.FC = () => {
 
                 <View>
                   <FieldRow columns={2}>
-                    <TextInput name={formKeys.firstName} label="First Name" />
-                    <TextInput name={formKeys.lastName} label="Last Name" />
+                    <TextInput
+                      type="name"
+                      name={formKeys.firstName}
+                      label="First Name"
+                    />
+                    <TextInput
+                      type="name"
+                      name={formKeys.lastName}
+                      label="Last Name"
+                    />
                     <DateTextInput name={formKeys.dob} label="Date of Birth" />
                     <RadioInput
                       data={genderData}

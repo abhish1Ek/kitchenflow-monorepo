@@ -32,7 +32,7 @@ const InputText = React.forwardRef<TextInput, ITextInput>((props, ref) => {
         {...inputTypeProps}
         {...inputProps}
         style={{
-          backgroundColor: '#FCFCFC',
+          backgroundColor: 'rgba(0,0,0,0.0)',
           // padding: 0,
           paddingBottom: 0,
           // paddingHorizontal: 0,

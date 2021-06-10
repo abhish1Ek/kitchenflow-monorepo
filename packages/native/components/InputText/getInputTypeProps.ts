@@ -11,6 +11,7 @@ type InputTypeProps = Partial<
     | 'textContentType'
     | 'passwordRules'
     | 'autoCompleteType'
+    | 'maxLength'
   >
 >;
 
@@ -23,6 +24,7 @@ const getInputTypeProp = (type?: InputType): InputTypeProps => {
         autoCapitalize: 'none',
         textContentType: 'emailAddress',
         autoCompleteType: 'email',
+        maxLength: 30,
       };
     case 'password':
       return {
@@ -46,14 +48,17 @@ const getInputTypeProp = (type?: InputType): InputTypeProps => {
         keyboardType: 'phone-pad',
         textContentType: 'telephoneNumber',
         autoCompleteType: 'tel',
+        maxLength: 10,
       };
     case 'digits':
       return {
         keyboardType: 'phone-pad',
+        maxLength: 100,
       };
     case 'name':
       return {
         autoCorrect: false,
+        maxLength: 100,
       };
     default:
       return {};

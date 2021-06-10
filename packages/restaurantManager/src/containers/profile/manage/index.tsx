@@ -1,10 +1,13 @@
-import { PLACEHOLDER_URL } from 'native/constants';
 import React from 'react';
 import { View } from 'react-native';
-import { Button, List, Avatar, IconButton, useTheme } from 'react-native-paper';
+import { Button, List, useTheme } from 'react-native-paper';
 import ProfileScreen from '../components/ProfileScreen';
 import Body from 'native/typography/Body';
 import Title from 'native/typography/Title';
+import Avatar from '../components/Avatar';
+import Header from 'native/components/Header';
+import { useNavigation } from '@react-navigation/core';
+import { ROUTE_NAMES } from '../../../Routes/routes';
 
 const create = (obj = { title: '' }) => ({
   ...obj,
@@ -21,36 +24,12 @@ const items = [
 
 const ManageProfile: React.FC = () => {
   const { colors } = useTheme();
+  const navigation = useNavigation();
 
   return (
     <ProfileScreen>
-      <View
-        style={{
-          backgroundColor: '#fff',
-          marginBottom: 20,
-          borderBottomLeftRadius: 30,
-          borderBottomRightRadius: 30,
-          paddingBottom: 20,
-        }}
-      >
-        <View
-          style={{
-            flexDirection: 'row',
-            paddingVertical: 10,
-          }}
-        >
-          <IconButton
-            icon="chevron-left"
-            size={48}
-            onPress={() => console.log('Pressed')}
-          />
-        </View>
-
-        <Avatar.Image
-          style={{ alignSelf: 'center' }}
-          size={90}
-          source={{ uri: PLACEHOLDER_URL }}
-        />
+      <Header title="Manage Profile" style={{ paddingBottom: 20 }}>
+        <Avatar />
         <Title size={21} align="center">
           John Mayer
         </Title>
@@ -64,21 +43,22 @@ const ManageProfile: React.FC = () => {
           style={{ alignSelf: 'center', borderRadius: 20, marginTop: 20 }}
           color={colors.accent}
           uppercase={false}
-          onPress={() => {}}
+          onPress={() => navigation.navigate(ROUTE_NAMES.Profile_Edit)}
         >
           Edit Profile
         </Button>
+      </Header>
+      <View style={{ marginTop: 20 }}>
+        {items.map(item => (
+          <List.Item
+            style={{ backgroundColor: '#fff' }}
+            key={item.title}
+            title={item.title}
+            left={p => <List.Icon {...p} icon={item.leftIcon} />}
+            right={p => <List.Icon {...p} icon={item.rightIcon} />}
+          />
+        ))}
       </View>
-
-      {items.map(item => (
-        <List.Item
-          style={{ backgroundColor: '#fff' }}
-          key={item.title}
-          title={item.title}
-          left={p => <List.Icon {...p} icon={item.leftIcon} />}
-          right={p => <List.Icon {...p} icon={item.rightIcon} />}
-        />
-      ))}
       <View style={{ flexGrow: 1 }} />
 
       <Button
