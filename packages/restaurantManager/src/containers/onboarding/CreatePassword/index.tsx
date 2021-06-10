@@ -9,10 +9,11 @@ import OnboardingScreen from '../components/OnboardingScreen';
 import { getFieldKeys } from 'common/utility/form';
 import { ROUTE_NAMES } from '../../../Routes/routes';
 import { useNavigation } from '@react-navigation/core';
+import YupValidations from 'common/utility/yupValidations';
 
 const validationSchema = Yup.object({
-  password: Yup.string().required('Password is required'),
-  confirmPassword: Yup.string().oneOf(
+  password: YupValidations.password(),
+  confirmPassword: YupValidations.password().oneOf(
     [Yup.ref('password'), null],
     'Passwords must match',
   ),

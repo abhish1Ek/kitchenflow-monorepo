@@ -10,7 +10,8 @@ export type InputType =
   | 'digits'
   | 'name'
   | 'newPassword'
-  | 'phone';
+  | 'phone'
+  | 'content';
 
 type ITextInputPaper = React.ComponentProps<typeof TextInputPaper>;
 
@@ -31,12 +32,15 @@ const InputText = React.forwardRef<TextInput, ITextInput>((props, ref) => {
         ref={ref}
         {...inputTypeProps}
         {...inputProps}
-        style={{
-          backgroundColor: 'rgba(0,0,0,0.0)',
-          // padding: 0,
-          paddingBottom: 0,
-          // paddingHorizontal: 0,
-        }}
+        style={[
+          {
+            backgroundColor: 'rgba(0,0,0,0.0)',
+            // padding: 0,
+            paddingBottom: 0,
+            // paddingHorizontal: 0,
+          },
+          props.style,
+        ]}
         error={!!errorMessage}
       />
       {!!errorMessage && (

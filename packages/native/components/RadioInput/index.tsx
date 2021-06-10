@@ -11,6 +11,10 @@ export type RadioObject = {
   value: string;
 };
 
+export type RadioItem<T> = RadioObject & {
+  value: T;
+};
+
 export interface IRadioInput {
   data: RadioObject[];
   onChange: (val: any) => void;

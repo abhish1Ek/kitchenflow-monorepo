@@ -10,6 +10,8 @@ const YupValidations = {
       excludeEmptyString: false,
     }),
   email: (message: string = 'Invalid email') => Yup.string().email(message),
+  password: (message: string = 'Invalid password') =>
+    Yup.string().min(8, 'Too short').required(message),
 };
 
 export default YupValidations;

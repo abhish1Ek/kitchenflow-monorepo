@@ -1,4 +1,4 @@
-import { RadioObject } from 'native/components/RadioInput';
+import { RadioItem } from 'native/components/RadioInput';
 import * as _ from 'lodash';
 
 export type Gender = 'm' | 'f';
@@ -15,17 +15,13 @@ export const backOfHouseType = [
 
 export type BackOfHouseType = typeof backOfHouseType[number];
 
-type RadioItem<T> = RadioObject & {
-  value: T;
-};
-
-type GendeObject = RadioItem<Gender>;
+type GenderObject = RadioItem<Gender>;
 
 type TeamRoleObject = RadioItem<TeamRoleType>;
 
 type BackOfHouseObject = RadioItem<BackOfHouseType>;
 
-export const genderData: GendeObject[] = [
+export const genderData: GenderObject[] = [
   { label: 'Male', value: 'm' },
   { label: 'Female', value: 'f' },
 ];

@@ -1,23 +1,31 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Button, List, useTheme } from 'react-native-paper';
+import { ROUTE_NAMES } from '../../../Routes/routes';
 import ProfileScreen from '../components/ProfileScreen';
 import Body from 'native/typography/Body';
 import Title from 'native/typography/Title';
 import Avatar from '../components/Avatar';
 import Header from 'native/components/Header';
 import { useNavigation } from '@react-navigation/core';
-import { ROUTE_NAMES } from '../../../Routes/routes';
 
-const create = (obj = { title: '' }) => ({
+interface Item {
+  title: string;
+  path?: keyof typeof ROUTE_NAMES;
+}
+
+const create = (obj: Item) => ({
   ...obj,
   rightIcon: 'chevron-right',
   leftIcon: 'lock-outline',
 });
 
 const items = [
-  create({ title: 'Change Password' }),
-  create({ title: 'Contact Team Kitchenflow' }),
+  create({
+    title: 'Change Password',
+    path: 'Profile_ChangePassword',
+  }),
+  create({ title: 'Contact Team Kitchenflow', path: 'Profile_Contact' }),
   create({ title: 'Order History' }),
   create({ title: 'Privacy Policy' }),
 ];
@@ -56,6 +64,11 @@ const ManageProfile: React.FC = () => {
             title={item.title}
             left={p => <List.Icon {...p} icon={item.leftIcon} />}
             right={p => <List.Icon {...p} icon={item.rightIcon} />}
+            onPress={() => {
+              if (item.path) {
+                navigation.navigate(item.path);
+              }
+            }}
           />
         ))}
       </View>

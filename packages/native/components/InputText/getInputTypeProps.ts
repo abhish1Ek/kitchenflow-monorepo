@@ -12,6 +12,8 @@ type InputTypeProps = Partial<
     | 'passwordRules'
     | 'autoCompleteType'
     | 'maxLength'
+    | 'multiline'
+    | 'numberOfLines'
   >
 >;
 
@@ -59,6 +61,12 @@ const getInputTypeProp = (type?: InputType): InputTypeProps => {
       return {
         autoCorrect: false,
         maxLength: 100,
+      };
+    case 'content':
+      return {
+        maxLength: 500,
+        multiline: true,
+        numberOfLines: 4,
       };
     default:
       return {};
