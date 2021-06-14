@@ -29,7 +29,7 @@ const formKeys = getFieldKeys(initialValues);
 const ContactKitchenFlow: React.FC = () => {
   return (
     <ProfileScreen>
-      <Header title="Change Password" />
+      <Header title="Contact Us" />
       <Form
         validationSchema={validationSchema}
         initialValues={initialValues}

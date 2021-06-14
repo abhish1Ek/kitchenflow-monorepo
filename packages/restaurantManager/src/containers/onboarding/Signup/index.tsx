@@ -116,8 +116,6 @@ const Signup: React.FC = () => {
                       label="Team Roles"
                     />
 
-                    <TextInput name={formKeys.lastName} label="Last Name" />
-
                     {values.teamRoleType === 'BACK_OF_HOUSE' && (
                       <SelectInputField
                         label="Back of house"
